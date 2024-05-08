@@ -7,17 +7,26 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: '/:id',
+    path: '/',
+    element: <LandingPage />
+  },
+  {
+    path: '/description/:id',
     element: <App />,
+  },
+  {
+    path: '/search',
+    element: <Search />,
   }
-  
-]); 
+
+
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
-     
+    <RouterProvider router={router} />
+
   </React.StrictMode>
 );
 
