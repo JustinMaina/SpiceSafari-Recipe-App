@@ -5,7 +5,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
   return (
   
-    <nav className="navbar fixed-top bg-body-tertiary ">
+    <nav className="navbar fixed-top bg-body-tertiary">
       <div className="logo">
 
         <h1>SPICESAFARI RECIPE</h1>

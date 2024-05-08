@@ -12,7 +12,9 @@ function App() {
 
       <section className="image-section">
         <div className="overlay">
+          <form>
           <input className="d-flex" type="text" placeholder="Search..." />
+          </form>
         </div>
       </section>
 
