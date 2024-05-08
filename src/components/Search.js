@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SortBar from "./Sort";
 
 // Star component to render star rating
 const Star = ({ filled }) => (
@@ -7,6 +8,7 @@ const Star = ({ filled }) => (
 
 function Search() {
     const [data, setData] = useState([]);
+    const [sortChoice, setSortChoice] = useState("")
 
     useEffect(() => {
         fetchData();
@@ -20,7 +22,10 @@ function Search() {
     };
 
     function filterRecipes(event){
-        const text = event.target.value
+        const text = event.target.value.toLowerCase();
+        if (text === ""){
+            fetchData();
+        }else{
         //console.log(text);
         const filtered = data.filter((recipe) => {
             //console.log(recipe);
@@ -29,7 +34,26 @@ function Search() {
         //console.log(filtered);
         setData([...filtered])
     }
+    }
     
+    const handleSortChoice = (event) => {
+        setSortChoice(event.target.value);
+    };
+
+        
+    const sortData = () => {
+        setData((prevData) => {
+          if (sortChoice === "alphabetical-order") {
+            return [...prevData.sort((b, a) => a.name.localeCompare(b.name))];
+          } else if (sortChoice === "bestrating") {
+            return [...prevData.sort((a, b) => a.rating_value - b.rating_value)];
+          }return prevData;
+        });
+      };
+
+      useEffect (() => {
+        sortData();
+    }, [sortChoice, sortData]);
 //console.log(data);
     
 
@@ -83,6 +107,7 @@ function Search() {
                     Search
                 </button>
             </div>
+            <SortBar handleSortChoice={handleSortChoice} sortChoice={sortChoice} />
             <div className="cardCarrier">
                 {renderCards}
             </div>
