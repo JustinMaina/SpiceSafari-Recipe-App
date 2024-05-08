@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import RecipeDescription from './components/Description';
 function App() {

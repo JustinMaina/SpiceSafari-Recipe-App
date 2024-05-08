@@ -1,35 +1,62 @@
-import React, { useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function RecipeDescription() {
+    const [recipe, setRecipe] = useState(null); // Change to single recipe state
+    const params = useParams();
+    const recipeId = params.id;
+
     useEffect(() => {
-        fetch("https://moviedatabase-g11e.onrender.com/recipes")
-         .then(response => {
-            if(!response.ok) {
-                throw new Error('No response yet');
-            }
-            return response.json();
-         })
-         .then(data => {
-            console.log(data)
-         })
-         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-          });
-    })
-  return (
-    <div className = "container">
-       <div class="card mb-3">
-         <img src="https://imgs.search.brave.com/YXH5xm89Gj3apZ5f1p9xpsfDUlG0wO0dWeXWLuaR_8Y/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU0/MWIxNTE1ZTRiMGE5/OTBiMzNhNzk2ZS8x/NjExNDI0NjAwNDY3/LTI1RTBGUDFCWExS/S0NZUjY2SE5DL2Fs/aXNvbi1yb21hbi1z/cGljZWQtY2hpY2tw/ZWEtc3Rldy13aXRo/LWNvY29udXQtYW5k/LXR1cm1lcmljLmpw/Zw" class="card-img-top" alt="Spiced Chickpea Stew With Coconut and Turmeric"/>
-        <div class="card-body">
-          <h1 class="card-title">Spiced Chickpea Stew With Coconut and Turmeric</h1>
-          <p class="card-description">Spiced chickpeas are crisped in olive oil, then simmered in a garlicky coconut milk for an insanely creamy, basically-good-for-you stew that evokes stews found in South India and parts of the Caribbean. While the chickpeas alone would be good as a side dish, they are further simmered with stock, bolstered with dark, leafy greens of your choosing and finished with a handful of fresh mint. When shopping, be sure to avoid low-fat coconut milk, coconut milk meant for drinking or cream of coconut: All are very different and would not be suitable here.</p>
-          <h1>Ingredients</h1>
-          
-       </div>
-      </div> 
-    </div>
-  );
+        fetch(`https://moviedatabase-g11e.onrender.com/recipes/${recipeId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setRecipe(data); // Update recipe state with fetched data
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, [recipeId]); // Add recipeId to dependency array
+
+    if (!recipe) {
+        return <div>Loading...</div>; // Render loading state until recipe is fetched
+    }
+
+    return (
+        <>
+            <section>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src={recipe.image_path} className="img-fluid rounded-start" alt="..."/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h1 class="card-title">{recipe.name}</h1>
+                                <h2>Description</h2>
+                                <p class="card-text"><small class="text-body-secondary">{recipe.description}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section>
+                <div className="col-md-8">
+                    <div className="card-body">
+                        <h1>Ingredients</h1>
+                        <p className="card-description">{recipe.ingredients}</p>
+                    </div>
+                    <h1>Instructions</h1>
+                    <p className="card-ingredients">{recipe.instructions}</p>
+                </div>
+            </section>
+        </>
+    );
 }
 
 export default RecipeDescription;
