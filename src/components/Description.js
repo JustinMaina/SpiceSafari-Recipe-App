@@ -36,7 +36,7 @@ function RecipeDescription() {
           <div className="row">
             <div className="col-md-11"></div>
             <div className="col-md-1">
-                <button onClick={goToSearch}>Go to Search</button>
+                <button className="btn btn-primary" onClick={goToSearch}>Go to Search</button>
             </div>
          </div>  
             <section>
