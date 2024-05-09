@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SortBar from "./Sort";
+import { Link } from "react-router-dom";
 
 // Star component to render star rating
 const Star = ({ filled }) => (
@@ -75,9 +76,11 @@ function Search() {
 
     const renderCards = data.map((recipe) => (
         <div className="card m-2" key={recipe.id}>
-            <img src={recipe.image_path} className="card-img-top" alt="..." />
+           <Link to={`/description/${recipe.id}`}>
+           <img src={recipe.image_path} className="card-img-top" alt="..." />
+           </Link> 
             <div className="card-body">
-                <p>{recipe.name}</p>
+                <h2>{recipe.name}</h2>
                 <div className="row">
                     <div className="col-6">
                         {renderStars(recipe.rating_value)}

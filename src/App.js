@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
-import LandingPage from "./Components/LandingPage";
-import NavBar from "./Components/NavBar";
+import LandingPage from "./components/LandingPage";
+import NavBar from "./components/NavBar";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
 
       <section className="image-section">
         <div className="overlay">
-          <form>
-          <input className="d-flex" type="text" placeholder="Search..." />
-          </form>
+          
+          <Link to="/search">
+          <input className="d-flex" type="text" placeholder="Search..."  />
+          </Link>
+
         </div>
       </section>
 
