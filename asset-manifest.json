@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SpiceSafari-Recipe-App/static/css/main.694a11db.css",
+    "main.js": "/SpiceSafari-Recipe-App/static/js/main.37a91be4.js",
+    "static/js/453.436b09a4.chunk.js": "/SpiceSafari-Recipe-App/static/js/453.436b09a4.chunk.js",
+    "index.html": "/SpiceSafari-Recipe-App/index.html",
+    "main.694a11db.css.map": "/SpiceSafari-Recipe-App/static/css/main.694a11db.css.map",
+    "main.37a91be4.js.map": "/SpiceSafari-Recipe-App/static/js/main.37a91be4.js.map",
+    "453.436b09a4.chunk.js.map": "/SpiceSafari-Recipe-App/static/js/453.436b09a4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.694a11db.css",
+    "static/js/main.37a91be4.js"
+  ]
+}
