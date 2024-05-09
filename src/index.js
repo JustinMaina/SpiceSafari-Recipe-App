@@ -9,7 +9,7 @@ import RecipeDescription from './components/Description';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/SpiceSafari-Recipe-App',
     element: <App />,
   },
   {
